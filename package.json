@@ -1,0 +1,32 @@
+{
+  "name": "jquery.accordionList",
+  "title": "Accordion List",
+  "description": "A plugin that creates an accordion effect for list items. Typically, this is used as a way to present a lot of information in a limited space. The idea is to collapse (hide) the extended information and only present something useful such as a title.",
+  "version": "0.5",
+  "homepage": "http://jnguyen.me/",
+  "author": {
+    "name": "John Nguyen",
+    "email": "john@mosomov.com",
+    "url": "http://jnguyen.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nguyenj/accordion-list.git"
+  },
+  "keywords": [
+    "jquery",
+    "sticky"
+  ],
+  "bugs": {
+    "url": "https://github.com/nguyenj/accordion-list/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nguyenj/accordion-list/blob/master/MIT-LICENSE.txt"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">= 1.1"
+  }
+}
