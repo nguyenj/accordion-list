@@ -8,47 +8,48 @@
  * Copyright 2013 John Nguyen
  * 
  */
-
+ 
 (function($) {
+$.fn.accordionList = function (options) {
+    var defaults;
 
-    $.fn.accordionList = function(options) {
-        var defaults = {
-                firstItem: true,
-                listItems: 'li',
-                itemTitle: '.title',
-                itemDescription: '.description'
-            },
-            settings = $.extend({}, defaults, options);
-
-        this.each(function() {
-            var $this = $(this),
-                $itemsTitle = $this.find(settings.itemTitle),
-                $itemsDescription = $this.find(settings.itemDescription);
-
-                $itemsDescription.hide();
-                if (settings.firstItem) {
-                    $itemsTitle.first().closest(settings.listItems).addClass('current');
-                    $itemsDescription.first().show();
-                }
-
-                $itemsTitle.on('click', function() {
-                    var $selected = $(this),
-                        $selectedDescription = $selected.siblings(settings.itemsDescription),
-                        isCurrent = $selected.closest(settings.listItems).hasClass('current');
-
-                    $itemsTitle.closest(settings.listItems).removeClass('current');
-                    $itemsDescription.slideUp();
-
-                    if ( !isCurrent ) {
-                        $selected.closest(settings.listItems).addClass('current');
-                        $selectedDescription.slideDown();
-                    }
-
-                    return false;
-                });
-        });
-
-        return this;
+    defaults = {
+        title: '.title',
+        description: '.description',
+        currentClass: 'current',
+        slideSpeed: 400,
+        onAfter: function (el) {}
     };
 
+    options = $.extend({}, defaults, options);
+
+    return this.each(function () {
+        var $container = $(this);
+        if ($container.length) {
+
+            var $title = $container.find(options.title);
+            var $descriptions = $container.find(options.description);
+
+            $descriptions.not(':first').hide().end()
+                .first().parent().addClass(options.currentClass);
+            $title.on('click', function () {
+                var $this = $(this);
+                var isCurrent = $this.parent().hasClass(options.currentClass);
+                var $description = $(this).siblings(options.description);
+
+                $title.parent().removeClass(options.currentClass);
+                $descriptions.slideUp(options.slideSpeed);
+
+                if (!isCurrent) {
+                    $this.parent().addClass(options.currentClass);
+                    $description.slideDown(options.slideSpeed);
+                }
+
+                options.onAfter($this);
+
+                return false;
+            });
+        }
+    });
+};
 })(jQuery);
