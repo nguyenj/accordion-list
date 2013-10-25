@@ -8,7 +8,7 @@
  * Copyright 2013 John Nguyen
  * 
  */
- 
+
 (function($) {
 $.fn.accordionList = function (options) {
     var defaults;
@@ -45,7 +45,9 @@ $.fn.accordionList = function (options) {
                     $description.slideDown(options.slideSpeed);
                 }
 
-                options.onAfter($this);
+                setTimeout(function() {
+                    options.onAfter($this);
+                }, options.slideSpeed+1);
 
                 return false;
             });

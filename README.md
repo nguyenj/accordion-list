@@ -23,8 +23,9 @@ A typical markup:
 ## Options
 Default options that are avabile for configuring:
 ```
-      firstItem: true,            // to show the first item of the list
-      listItems: 'li',            // the element that contains the title and description
-      itemTitle: '.title',        // the item title
-itemDescription: '.description'   // the item description
+          title:  '.title',             // the title class
+    description:  '.description',       // the description class
+   currentClass:  'current',            // the current class
+     slideSpeed:  400,                  // the animation speed of sliding up and down
+        onAfter:  function (el) {}      // callback function after the sliding has completed
 ```
